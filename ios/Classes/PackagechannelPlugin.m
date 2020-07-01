@@ -1,11 +1,11 @@
-#import "PackagechannelPlugin.h"
+#import "PackageChannelPlugin.h"
 
-@implementation PackagechannelPlugin
+@implementation PackageChannelPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
-      methodChannelWithName:@"packagechannel"
+      methodChannelWithName:@"package_channel"
             binaryMessenger:[registrar messenger]];
-  PackagechannelPlugin* instance = [[PackagechannelPlugin alloc] init];
+  PackageChannelPlugin* instance = [[PackageChannelPlugin alloc] init];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 

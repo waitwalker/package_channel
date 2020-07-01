@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/packagechannel.iml" filepath="$PROJECT_DIR$/packagechannel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/packagechannel_android.iml" filepath="$PROJECT_DIR$/android/packagechannel_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/android/packagechannel_example_android.iml" filepath="$PROJECT_DIR$/example/android/packagechannel_example_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/package_channel.iml" filepath="$PROJECT_DIR$/package_channel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/package_channel_android.iml" filepath="$PROJECT_DIR$/android/package_channel_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/package_channel_example_android.iml" filepath="$PROJECT_DIR$/example/android/package_channel_example_android.iml" />
     </modules>
   </component>
 </project>

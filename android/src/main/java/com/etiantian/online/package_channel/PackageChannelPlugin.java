@@ -1,10 +1,13 @@
-package com.etiantian.online.packagechannel;
+package com.etiantian.online.package_channel;
 
 import android.content.Context;
+import android.util.LongSparseArray;
 
 import androidx.annotation.NonNull;
 
 import com.mcxiaoke.packer.helper.PackerNg;
+
+import java.util.List;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
@@ -13,21 +16,26 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-/** PackagechannelPlugin */
-public class PackagechannelPlugin implements FlutterPlugin, MethodCallHandler {
+/** PackageChannelPlugin */
+public class PackageChannelPlugin implements FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
-  private Context currentContext;
+
+  static Context contextR;
+  Context contextO;
+
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    currentContext = flutterPluginBinding.getApplicationContext();
-    channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "packagechannel");
+
+    channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "package_channel");
     channel.setMethodCallHandler(this);
+    contextO = flutterPluginBinding.getApplicationContext();
   }
+
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
   // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
@@ -39,13 +47,9 @@ public class PackagechannelPlugin implements FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   public static void registerWith(Registrar registrar) {
-    PackagechannelPlugin plugin = new PackagechannelPlugin(registrar);
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "packagechannel");
-    channel.setMethodCallHandler(plugin);
-  }
-
-  private PackagechannelPlugin(Registrar registrar) {
-    this.currentContext = registrar.activeContext();
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "package_channel");
+    channel.setMethodCallHandler(new PackageChannelPlugin());
+    contextR = registrar.activeContext();
   }
 
   @Override
@@ -53,7 +57,14 @@ public class PackagechannelPlugin implements FlutterPlugin, MethodCallHandler {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else if (call.method.equals("getChannel")) {
-      result.success(PackerNg.getChannel(currentContext));
+      if (contextR != null) {
+        result.success(PackerNg.getChannel(contextR));
+      }
+
+      if (contextO != null) {
+        result.success(PackerNg.getChannel(contextO));
+      }
+
     } else {
       result.notImplemented();
     }

@@ -95,7 +95,7 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.8"
-  packagechannel:
+  package_channel:
     dependency: "direct main"
     description:
       path: ".."

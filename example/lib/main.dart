@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:packagechannel/packagechannel.dart';
+import 'package:package_channel/package_channel.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,11 +15,32 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String packageChannel = "Unknown pack age";
 
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    getPackageChannel();
+  }
+
+  Future<void> getPackageChannel() async {
+
+    String packageC;
+
+    try {
+      packageC = await PackageChannel.getChannel;
+    } on PlatformException {
+      packageC = 'Failed to getChannel.';
+    }
+
+    if (!mounted) return;
+
+    if (packageC != null) {
+      setState(() {
+        packageChannel = packageC;
+      });
+    }
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -27,7 +48,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await Packagechannel.platformVersion;
+      platformVersion = await PackageChannel.platformVersion;
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -50,7 +71,14 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Running on: $_platformVersion\n'),
+              Padding(padding: EdgeInsets.only(top: 30)),
+              Text('Running on: $packageChannel\n'),
+            ],
+          ),
         ),
       ),
     );

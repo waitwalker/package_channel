@@ -1,13 +1,13 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint packagechannel.podspec' to validate before publishing.
+# Run `pod lib lint package_channel.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'packagechannel'
+  s.name             = 'package_channel'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin.'
+  s.summary          = 'A new Flutter application.'
   s.description      = <<-DESC
-A new Flutter plugin.
+A new Flutter application.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }

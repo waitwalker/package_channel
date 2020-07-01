@@ -1,6 +1,6 @@
-# packagechannel_example
+# package_channel_example
 
-Demonstrates how to use the packagechannel plugin.
+Demonstrates how to use the package_channel plugin.
 
 ## Getting Started
 

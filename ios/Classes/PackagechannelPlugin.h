@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface PackagechannelPlugin : NSObject<FlutterPlugin>
+@interface PackageChannelPlugin : NSObject<FlutterPlugin>
 @end

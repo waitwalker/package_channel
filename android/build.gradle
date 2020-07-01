@@ -1,4 +1,4 @@
-group 'com.etiantian.online.packagechannel'
+group 'com.etiantian.online.package_channel'
 version '1.0'
 
 buildscript {

@@ -1,4 +1,4 @@
-package com.etiantian.online.packagechannel_example;
+package com.etiantian.online.package_channel_example;
 
 import io.flutter.embedding.android.FlutterActivity;
 
