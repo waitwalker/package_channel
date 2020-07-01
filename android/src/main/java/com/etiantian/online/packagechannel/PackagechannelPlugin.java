@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.mcxiaoke.packer.helper.PackerNg;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -37,16 +39,21 @@ public class PackagechannelPlugin implements FlutterPlugin, MethodCallHandler {
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
   public static void registerWith(Registrar registrar) {
+    PackagechannelPlugin plugin = new PackagechannelPlugin(registrar);
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "packagechannel");
+    channel.setMethodCallHandler(plugin);
+  }
 
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "packagechannel");z
-    channel.setMethodCallHandler(new PackagechannelPlugin());
-
+  private PackagechannelPlugin(Registrar registrar) {
+    this.currentContext = registrar.activeContext();
   }
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
+    } else if (call.method.equals("getChannel")) {
+      result.success(PackerNg.getChannel(currentContext));
     } else {
       result.notImplemented();
     }
