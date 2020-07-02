@@ -1,4 +1,4 @@
-#import "PackageChannelPlugin.h"
+#import "PackagechannelPlugin.h"
 
 @implementation PackageChannelPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
